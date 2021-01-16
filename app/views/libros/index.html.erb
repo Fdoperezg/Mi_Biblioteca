@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Libros</h1>
+
+<%= search_form_for @q do |f| %>
+  <%= f.label :status_eq, "Status" %>
+  <%= f.select :estado_eq, options_for_select(Libro.estados , @q.estado_eq), {},{class: "form-control"} %>
+  <%= f.submit %>
+<% end %> 
+
+<table>
+  <thead>
+    <tr>
+      <th><%= sort_link(@q, :title) %></th> 
+      <th>Autor</th>
+      <th>Estado</th>
+      <th>Prestado</th>
+      <th>Devuelto</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @libros.each do |libro| %>
+      <tr>
+        <td><%= libro.title %></td>
+        <td><%= libro.autor %></td>
+        <td><%= libro.estado %></td>
+          <%if libro.estado == 'prestado'%>
+            <td><%= libro.prestado %></td>
+            <td><%= libro.devuelto %></td>
+          <%end%> 
+        <td><%= link_to 'Muéstralo', libro %></td>
+        <td><%= link_to 'Editar', edit_libro_path(libro) %></td>
+        <td><%= link_to 'Eliminar', libro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<div class= "container" >
+    <%= link_to 'Nuevo Libro', new_libro_path %>
+    <%= paginate @libros %>
+</div>

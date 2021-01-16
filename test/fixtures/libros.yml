@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  autor: MyString
+  estado: MyString
+  prestado: 2021-01-12
+  devuelto: 2021-01-12
+
+two:
+  title: MyString
+  autor: MyString
+  estado: MyString
+  prestado: 2021-01-12
+  devuelto: 2021-01-12
